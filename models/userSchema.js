@@ -37,7 +37,8 @@ const userSchema=new Schema({
     
     
 
-    // this.salt=salt;
+    this.salt=salt;
+    console.log(salt)
     this.password=hashedPassword;
     next();
    
@@ -47,17 +48,24 @@ const userSchema=new Schema({
     const user= await this.findOne({email});
     console.log("usershemamatchcheck")
     if(!user) throw new Error('User not found');
+
     const salt=user.salt;
+    console.log(salt);
+    console.log("saltcheck")
     const hashedPassword=user.password;
+    console.log("passcheck")
     const userProvidedHash=createHmac("sha256",salt)
     .update(password)
     .digest("hex")
+    
+
+    console.log("check")
 
     if(hashedPassword!==userProvidedHash) throw new Error('Password not match')
 
     return user;
 
-
+   
 
   })
   // console.log(salt);
