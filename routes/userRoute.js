@@ -1,6 +1,6 @@
 const {Router} =require("express")
 
-const router=Router()
+const router=Router();
 const User=require("../models/userSchema")
 
 router.get("/signup",(req,res)=>{
@@ -19,6 +19,14 @@ router.post("/signup",async (req,res)=>{
   })
   res.redirect("/")
   
+})
+router.post("/signin",async (req,res)=>{
+  const {email,password}=req.body;
+  console.log(email,password);
+  const user=await User.matchPassword(email,password);
+  console.log("User",user);
+  return res.redirect("/");
+
 })
 
 module.exports=router;

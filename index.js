@@ -5,14 +5,17 @@ const userRoute=require("./routes/userRoute")
 const mongoose=require("mongoose")
 
 
+
 const app=express()
 
 const PORT=8001;
 
-// mongoose.connect("mongodb://localhost:")
+mongoose.connect("mongodb://localhost:27017/blogify")
+.then((e)=>console.log("MongoDB connected"))
 
 app.set("view engine","ejs")
 app.set("views",path.resolve("./views"))
+app.use(express.urlencoded({extended:false}))
 
 app.get("/",(req,res)=>{
     res.render("home");
