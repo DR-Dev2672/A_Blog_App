@@ -1,6 +1,8 @@
 const {Schema,model} =require("mongoose")
 
 const { createHmac,randomBytes} = require('crypto');
+const { stringify } = require("querystring");
+const { createTokenUser } = require("../server/authentication");
 
 
 
@@ -20,7 +22,15 @@ const userSchema=new Schema({
   password:{
     type:String,
     required:true
+  },
+  profileImageUrl:{
+    type:String,
+    
+  },
+  role:{
+    // type:
   }
+
 
     
 },{timestamps:true});
@@ -44,7 +54,7 @@ const userSchema=new Schema({
    
   });
 
-  userSchema.static("matchPassword",async function (email,password){
+  userSchema.static("matchPasswordAndGenerateToken",async function (email,password){
     const user= await this.findOne({email});
     console.log("usershemamatchcheck")
     if(!user) throw new Error('User not found');
@@ -63,7 +73,8 @@ const userSchema=new Schema({
 
     if(hashedPassword!==userProvidedHash) throw new Error('Password not match')
 
-    return user;
+    const token=createTokenUser(user);
+    return token;
 
    
 
