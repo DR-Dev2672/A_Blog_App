@@ -25,10 +25,12 @@ const userSchema=new Schema({
   },
   profileImageUrl:{
     type:String,
+    default:""
     
   },
   role:{
     // type:
+      type:"ADMIN"|"Developer"
   }
 
 
