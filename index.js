@@ -39,5 +39,5 @@ app.use("/user",userRoute);
 // })
 
 app.listen(PORT,(req,res)=>{
-    console.log(`server is started at PORT:${8001}`);
+    console.log(`server is started at PORT:${PORT}`);
 })
