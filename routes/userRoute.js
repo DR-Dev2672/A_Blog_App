@@ -18,6 +18,7 @@ router.post("/signup",async (req,res)=>{
    email,
    password
   })
+  console.log("check ")
   res.redirect("/")
   
 })

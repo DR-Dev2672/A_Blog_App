@@ -30,7 +30,7 @@ const userSchema=new Schema({
   },
   role:{
     // type:
-      type:"ADMIN"|"Developer"
+      // type:"ADMIN"|"Developer"
   }
 
 
