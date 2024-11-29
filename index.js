@@ -1,6 +1,8 @@
 const express=require("express")
 const path=require("path")
 const userRoute=require("./routes/userRoute")
+const blogRoute=require("./routes/blogRoute")
+const Blog=require("./models/blog")
 
 const cookieParser=require("cookie-parser")
 
@@ -25,14 +27,18 @@ app.use(express.urlencoded({extended:false}))
 
 app.use(cookieParser());
 app.use(checkForAuthenticationCookie("token"))
+app.use(express.static(path.resolve("./public")))
 
-app.get("/",(req,res)=>{
+app.get("/",async(req,res)=>{
+    const allBlogs=await Blog.find({}).sort();
     res.render("home",{
-        user:req.user
+        user:req.user,
+        blogs:allBlogs
     });
 
 })
 app.use("/user",userRoute);
+app.use("/blog",blogRoute);
 
 // app.get("/",(req,res)=>{
 //     res.send("hii from server")
