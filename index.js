@@ -45,5 +45,5 @@ app.use("/blog",blogRoute);
 // })
 
 app.listen(PORT,(req,res)=>{
-    console.log(`server is started at PORT:${8001}`);
+    console.log(`server is started at PORT:${PORT}`);
 })
