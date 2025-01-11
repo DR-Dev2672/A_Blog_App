@@ -1,9 +1,12 @@
 {
   "name": "a_blog_app",
   "version": "1.0.0",
+  "homepage": "https://dr-dev2672.github.io/a_blog_app",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "predeploy": "npm run build",
+     "deploy": "gh-pages -d build",
     "start": "node index",
     "dev": "nodemon index.js"
   },
@@ -18,6 +21,7 @@
     "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {
+    "gh-pages": "^6.3.0",
     "nodemon": "^3.1.7"
   }
 }
